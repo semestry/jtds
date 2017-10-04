@@ -5,6 +5,8 @@ build/
 target/
 classes/
 
+*.releaseBackup
+
 # Eclipse
 *.launch
 .project
