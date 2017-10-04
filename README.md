@@ -1,3 +1,17 @@
+Fork information
+================
+
+This repository was forked from the original, unmaintained jTDS 1.3.1+ source at https://svn.code.sf.net/p/jtds/code/branches/jTDS%201.3%20(stable)/
+ 
+Usage of this code and or any binaries is at your own risk. I would strongly recommend to have a look at Microsoft's JDBC driver first, which can be found at https://github.com/Microsoft/mssql-jdbc
+
+Changes per version:
+
+* 1.3.2: reorganise sources to make normal Maven import/release possible.
+* 1.3.3: add SSL patch, see https://sourceforge.net/p/jtds/patches/130/ 
+ 
+The original jTDS README can be found below.
+ 
 Introduction
 ============
 
