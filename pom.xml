@@ -1,57 +1,150 @@
 <?xml version="1.0"?>
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-  </parent>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>net.sourceforge.jtds</groupId>
-  <artifactId>jtds</artifactId>
-  <version>1.3.1</version>
-  <packaging>jar</packaging>
-  <name>jTDS</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.eveoh</groupId>
+    <artifactId>jtds</artifactId>
+    <version>1.3.2-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>jTDS</name>
 
-  <url>http://jtds.sourceforge.net</url>
+    <properties>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+    </properties>
 
-  <licenses>
-    <license>
-      <name>LGPL</name>
-      <url>http://www.gnu.org/copyleft/lesser.html</url>
-    </license>
-  </licenses>
+    <url>http://jtds.sourceforge.net</url>
 
-  <description>jTDS is an open source 100% pure Java (type 4) JDBC 3.0 driver 
-    for Microsoft SQL Server (6.5, 7, 2000, 2005, 2008, 2012) and Sybase ASE
-    (10, 11, 12, 15). jTDS is based on FreeTDS and is currently the fastest
-    production-ready JDBC driver for SQL Server and Sybase. jTDS is 100% JDBC
-    3.0 compatible, supporting forward-only and scrollable/updateable ResultSets
-    and implementing all the DatabaseMetaData and ResultSetMetaData methods. 
-  </description>
+    <licenses>
+        <license>
+            <name>LGPL</name>
+            <url>http://www.gnu.org/copyleft/lesser.html</url>
+        </license>
+    </licenses>
 
-  <scm>
-    <url>https://svn.code.sf.net/p/jtds/code</url>
+    <description>jTDS is an open source 100% pure Java (type 4) JDBC 3.0 driver
+        for Microsoft SQL Server (6.5, 7, 2000, 2005, 2008, 2012) and Sybase ASE
+        (10, 11, 12, 15). jTDS is based on FreeTDS and is currently the fastest
+        production-ready JDBC driver for SQL Server and Sybase. jTDS is 100% JDBC
+        3.0 compatible, supporting forward-only and scrollable/updateable ResultSets
+        and implementing all the DatabaseMetaData and ResultSetMetaData methods.
+    </description>
+
+    <scm>
+        <url>https://github.com/eveoh/jtds</url>
+        <connection>scm:git:git://github.com/eveoh/jtds.git</connection>
+        <developerConnection>scm:git:git@github.com:eveoh/jtds.git</developerConnection>
   </scm>
 
-  <developers>
-    <developer>
-      <id>momo</id>
-      <name>Holger Rehn</name>
-      <email>ickzon@users.sourceforge.net</email>
-    </developer>
-  </developers>
+    <developers>
+        <developer>
+            <id>momo</id>
+            <name>Holger Rehn</name>
+            <email>ickzon@users.sourceforge.net</email>
+        </developer>
+        <developer>
+            <id>MikeN123</id>
+            <name>Mike Noordermeer</name>
+            <email>mike@eveoh.nl</email>
+        </developer>
+    </developers>
 
-  <dependencies>
-    <!-- jCIFS may be required for named pipe connections -->
-    <dependency>
-      <groupId>jcifs</groupId>
-      <artifactId>jcifs</artifactId>
-      <version>1.3.17</version>
-      <scope>compile</scope>
-      <optional>true</optional>
-    </dependency>
-  </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>https://maven.eveoh.nl/repository/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <releaseProfiles>releases</releaseProfiles>
+                    <arguments>-DskipTests</arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+
+        <!-- jCIFS may be required for named pipe connections -->
+        <dependency>
+            <groupId>jcifs</groupId>
+            <artifactId>jcifs</artifactId>
+            <version>1.3.17</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
 </project>
