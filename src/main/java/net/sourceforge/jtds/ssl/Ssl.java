@@ -44,6 +44,8 @@ public interface Ssl {
     String SSL_AUTHENTICATE = "authenticate";
     /** Size of TLS record header. */
     int  TLS_HEADER_SIZE = 5;
+    /** SSLv2 Client hello message */
+    int TYPE_SSLV2CLIENTHELLO = 0x80;
     /** TLS Change Cipher Spec record type. */
     byte TYPE_CHANGECIPHERSPEC = 20;
     /** TLS Alert record type. */

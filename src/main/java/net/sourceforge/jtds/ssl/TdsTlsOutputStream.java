@@ -134,7 +134,7 @@ class TdsTlsOutputStream extends FilterOutputStream
       int length = ( ( b[off + 3] & 0xFF ) << 8 ) | ( b[off + 4] & 0xFF );
 
       // check to see if probably a SSL client hello
-      if( contentType < Ssl.TYPE_CHANGECIPHERSPEC || contentType > Ssl.TYPE_APPLICATIONDATA || length != len - Ssl.TLS_HEADER_SIZE )
+      if( contentType == Ssl.TYPE_SSLV2CLIENTHELLO )
       {
          // assume SSLv2 client hello
          putTdsPacket( b, off, len );
