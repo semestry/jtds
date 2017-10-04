@@ -17,13 +17,13 @@
 //
 package net.sourceforge.jtds.jdbcx.proxy;
 
+import net.sourceforge.jtds.jdbc.JtdsPreparedStatement;
+
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Calendar;
-
-import net.sourceforge.jtds.jdbc.*;
 
 /**
  * This class would be better implemented as a java.lang.reflect.Proxy.  However, this
@@ -717,8 +717,13 @@ implements PreparedStatement {
      */
     public void setBinaryStream(int parameterIndex, InputStream x, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setBinaryStream(parameterIndex, x, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -735,8 +740,13 @@ implements PreparedStatement {
      */
     public void setBlob(int parameterIndex, InputStream inputStream, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setBlob(parameterIndex, inputStream, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -752,9 +762,14 @@ implements PreparedStatement {
      * @see java.sql.PreparedStatement#setCharacterStream(int, java.io.Reader, long)
      */
     public void setCharacterStream(int parameterIndex, Reader reader,
-            long length) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+                                   long length) throws SQLException {
+        validateConnection();
+
+        try {
+            _preparedStatement.setCharacterStream(parameterIndex, reader, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)
@@ -770,8 +785,13 @@ implements PreparedStatement {
      */
     public void setClob(int parameterIndex, Reader reader, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        validateConnection();
+
+        try {
+            _preparedStatement.setClob(parameterIndex, reader, length);
+        } catch (SQLException sqlException) {
+            processSQLException(sqlException);
+        }
     }
 
     /* (non-Javadoc)

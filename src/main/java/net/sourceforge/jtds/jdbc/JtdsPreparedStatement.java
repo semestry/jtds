@@ -24,21 +24,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Date;
-import java.sql.NClob;
-import java.sql.ParameterMetaData;
-import java.sql.PreparedStatement;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLXML;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1270,8 +1256,11 @@ public class JtdsPreparedStatement extends JtdsStatement implements PreparedStat
     @Override
     public void setBinaryStream(int parameterIndex, InputStream x, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        if (length <= Integer.MAX_VALUE) {
+            setBinaryStream(parameterIndex, x, (int) length);
+        } else {
+            throw new SQLException(Messages.get("error.resultset.longblob"), "24000");
+        }
     }
 
     /* (non-Javadoc)
@@ -1290,8 +1279,11 @@ public class JtdsPreparedStatement extends JtdsStatement implements PreparedStat
     @Override
     public void setBlob(int parameterIndex, InputStream inputStream, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        if (length <= Integer.MAX_VALUE) {
+            setBinaryStream(parameterIndex, inputStream, (int) length);
+        } else {
+            throw new SQLException(Messages.get("error.resultset.longblob"), "24000");
+        }
     }
 
     /* (non-Javadoc)
@@ -1309,9 +1301,12 @@ public class JtdsPreparedStatement extends JtdsStatement implements PreparedStat
      */
     @Override
     public void setCharacterStream(int parameterIndex, Reader reader,
-            long length) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+                                   long length) throws SQLException {
+        if (length <= Integer.MAX_VALUE) {
+            setCharacterStream(parameterIndex, reader, (int) length);
+        } else {
+            throw new SQLException(Messages.get("error.resultset.longclob"), "24000");
+        }
     }
 
     /* (non-Javadoc)
@@ -1329,8 +1324,11 @@ public class JtdsPreparedStatement extends JtdsStatement implements PreparedStat
     @Override
     public void setClob(int parameterIndex, Reader reader, long length)
             throws SQLException {
-        // TODO Auto-generated method stub
-        throw new AbstractMethodError();
+        if (length <= Integer.MAX_VALUE) {
+            setCharacterStream(parameterIndex, reader, (int) length);
+        } else {
+            throw new SQLException(Messages.get("error.resultset.longclob"), "24000");
+        }
     }
 
     /* (non-Javadoc)
