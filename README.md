@@ -8,8 +8,9 @@ Usage of this code and or any binaries is at your own risk. I would strongly rec
 Changes per version:
 
 * 1.3.2: reorganise sources to make normal Maven import/release possible.
-* 1.3.3: add SSL patch, see https://sourceforge.net/p/jtds/patches/130/ 
-* 1.3.4: fixes for a small memleak and binary streams. From https://github.com/milesibastos/jTDS
+* 1.3.3: add SSL patch, see https://sourceforge.net/p/jtds/patches/130/. 
+* 1.3.4: fixes for a small memleak and binary streams. From https://github.com/milesibastos/jTDS.
+* 1.3.5: fix inclusion of some property files in build.
 
 This version is available from Maven repository https://maven.eveoh.nl/repository/releases/ under the group name `nl.eveoh` and artifact name `jtds`.
  
