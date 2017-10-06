@@ -52,7 +52,7 @@ class TdsTlsSocket extends Socket {
      * @see java.net.Socket#close()
      */
     public synchronized void close() throws IOException {
-        // Do nothing. Underlying socket closed elsewhere
+        super.close();
     }
 
     /*
